@@ -73,9 +73,10 @@ public final class Main {
         ArrayNode output = objectMapper.createArrayNode();
 
         //TODO add here the entry point to your implementation
-            PlayGame playGame = new PlayGame(inputData, objectMapper, output);
-            playGame.play();
-            // Main problem
+
+        // The games begin here, basically the Main clas does not have any other function
+        PlayGame playGame = new PlayGame(inputData, objectMapper, output);
+        playGame.play();
 
         ObjectWriter objectWriter = objectMapper.writerWithDefaultPrettyPrinter();
         objectWriter.writeValue(new File(filePath2), output);

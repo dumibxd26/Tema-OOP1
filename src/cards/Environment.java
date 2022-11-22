@@ -5,6 +5,9 @@ import fileio.Coordinates;
 import java.util.ArrayList;
 import java.util.Map;
 
+/**
+ * Environment card which only has useAbility function to be implemented
+ */
 public abstract class Environment extends Card{
 
     public Environment(int mana, String description, ArrayList<String> colors, String name) {

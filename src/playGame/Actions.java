@@ -41,7 +41,6 @@ public class Actions {
         this.output = output;
         this.playedGames = playedGames;
         this.wins = wins;
-//        this.utility = new utility(mapper, output);
 
         currentPlayer = playerTurn == 1 ? playerOne : playerTwo;
         otherPlayer = playerTurn == 1 ? playerTwo : playerOne;
@@ -49,9 +48,12 @@ public class Actions {
 
     public void executeActions(ArrayList<ActionsInput> actionsList) {
 
+        // If it is a simple action, the output node is created in this file
+        // otherwise, it is handeled by the utility class
+        // which only contains static functions
 
+        // Iterate over the action list
         for(ActionsInput action : actionsList) {
-
 
             ObjectNode playerCommand = mapper.createObjectNode();
 
@@ -124,6 +126,7 @@ public class Actions {
                     hand = playerTwo.getHand();
                 }
 
+                // Stream function to retrieve all environment cards in hand
                 ArrayList<Environment> envCards = utility.filterEnv(hand);
 
                 playerCommand.put("output", utilsOutput.createEnvDeck(mapper, envCards));
@@ -147,6 +150,7 @@ public class Actions {
 
             } else if (action.getCommand().compareTo("endPlayerTurn") == 0) {
 
+                // Remove the frozen cards from the current user
                 Iterator<Map.Entry<Coordinates, Player> >
                         iterator = isFrozen.entrySet().iterator();
 
@@ -159,8 +163,10 @@ public class Actions {
                     }
                 }
 
+                // The hero can attack again
                 currentPlayer.getHero().setAttackedThisTurn(false);
 
+                // Add the mana and get a card if it is possible
                 playerTurn = (playerTurn == 1) ? 2 : 1;
                 turns++;
                 if(turns != 0 && turns % 2 == 0) {
@@ -186,18 +192,18 @@ public class Actions {
                 int index = action.getHandIdx();
                 Card card = currentPlayer.getHand().get(index);
 
+                // Add a card at the correct position on the matrix
+                // (either in the front or the rear row of each player
                 if (utility.checkTableEnvironmentCard(action, mapper, output, card) && utility.checkMana(action, mapper, output, card, currentPlayer)) {
 
                     ArrayList<Minion> frontRow = utility.getFrontRow(playerTurn, playMatrix);
                     ArrayList<Minion> rearRow = utility.getRearRow(playerTurn, playMatrix);
 
-                    // refactor
                     if (utility.checkFront(card)) {
                         if (!utility.checkRowFull(action, mapper, output, frontRow)) {
                             frontRow.add((Minion) card);
                             currentPlayer.getHand().remove(index);
                             currentPlayer.setMana(currentPlayer.getMana() - card.getMana());
-//                            ((Minion)card).setPositionOnRow(action.getY());
 
                             if(utility.checkIsTank(card)) {
                                 currentPlayer.setTanks(currentPlayer.getTanks() + 1);
@@ -294,6 +300,7 @@ public class Actions {
                     attackerCard.attack(otherPlayer.getHero());
                     usedAttack.add(attackerCardCoord);
 
+                    // Check if the hero died and print the desired output
                     if(otherPlayer.getHero().getHealth() <= 0) {
                         if (currentPlayer.getPlayerNumber() == 1) {
                             playerOne.getWins().setPlayerOneWins(playerOne.getWins().getPlayerOneWins() + 1);

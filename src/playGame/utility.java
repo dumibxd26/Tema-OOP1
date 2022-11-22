@@ -322,6 +322,11 @@ public class utility {
         return envCards;
     }
 
+    /**
+      * @param isFrozen
+     * @param playMatrix
+     * @return get all the frozen cards on the table using the isFrozen hashmap
+     */
     public static ArrayList<Minion> getFrozenCards( Map<Coordinates, Player> isFrozen, ArrayList<ArrayList<Minion>> playMatrix) {
 
         ArrayList<Minion> frozenCard = new ArrayList<Minion>();
@@ -364,6 +369,16 @@ public class utility {
         return true;
     }
 
+    /**
+     *
+     * @param action
+     * @param mapper
+     * @param output
+     * @param card
+     * @param playMatrix
+     * @param currentRow
+     * @return check if it is the Hearthound card and if the current player row is full to apply the command
+     */
     public static Boolean checkHeartHound(ActionsInput action, ObjectMapper mapper, ArrayNode output, Card card, ArrayList<ArrayList<Minion>> playMatrix, int currentRow) {
         if (card instanceof HeartHound) {
             if (playMatrix.get(3 - currentRow).size() == 5) {

@@ -2,6 +2,10 @@ package cards;
 
 import java.util.ArrayList;
 
+/**
+ * Abstract class which adds the health property to a class
+ * used for Minions and Heroes
+ */
 public abstract class CardWithHealth extends Card{
 
     public int health;

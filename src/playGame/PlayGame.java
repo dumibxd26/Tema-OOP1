@@ -37,10 +37,8 @@ public class PlayGame {
         }
     }
     public void play() {
-        // ia fiecare JOC din array=ul de JOCURI
-        // actions este diferit pentru fiecare game,
 
-        // returnez eroul, deck-urile si randu player-ului curent;
+        // Initializing each game
        for(GameInput gameInputIterator : gameInputArray) {
 
            CardInput playerOneHeroInput = gameInputIterator.getStartGame().getPlayerOneHero();
@@ -50,8 +48,7 @@ public class PlayGame {
            int playerTurn = gameInputIterator.getStartGame().getStartingPlayer();
            int shuffleDeckSeed = gameInputIterator.getStartGame().getShuffleSeed();
 
-//           Random random = new Random(shuffleDeckSeed);
-
+           // Creating the cards for each player
            ArrayList<Card> playerOneDeck = utility.createDeckOfCards(playerOneDecks.getDecks().get(playerOneDeckIndex), isFrozen);
            ArrayList<Card> playerTwoDeck = utility.createDeckOfCards(playerTwoDecks.getDecks().get(playerTwoDeckIndex), isFrozen);
 
@@ -69,10 +66,13 @@ public class PlayGame {
            Player playerOne = new Player(playerOneDeck, playerOneHero, 1, wins);
            Player playerTwo = new Player(playerTwoDeck, playerTwoHero, 2, wins);
 
-           // The biggest piece of dog shit
+           // Add each player object to Winterfell and LordRoyce cards since
+           // they need to use isFrozen map to check if a minion is frozen
            utility.addIsFrozen(playerOneDeck, playerOne, playerTwo);
            utility.addIsFrozen(playerTwoDeck, playerOne, playerTwo);
 
+           // Check if the hero of each player is Lord Royce and
+           // add the other player to use frozen ability
            if (playerOne.getHero().getName().compareTo("Lord Royce") == 0) {
                ((LordRoyce)playerOne.getHero()).setPlayers(playerOne, playerTwo);
            }
