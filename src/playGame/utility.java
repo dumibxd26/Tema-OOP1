@@ -18,15 +18,16 @@ import fileio.Coordinates;
 
 public class utility {
 
-//    ObjectMapper mapper;
-//    ArrayNode output;
     static ObjectNode node;
 
     public utility() {}
-//    public utility(ObjectMapper mapper, ArrayNode output) {
-//        this.mapper = mapper;
-//        this.output = output;
-//    }
+
+    /**
+     *
+     * @param cardInputArray
+     * @param isFrozen
+     * @return function to create a deck of cards with the desired format
+     */
     public static ArrayList<Card> createDeckOfCards(ArrayList<CardInput> cardInputArray, Map<Coordinates, Player> isFrozen) {
 
         ArrayList<Card> cardsArray = new ArrayList<Card>();
@@ -74,6 +75,16 @@ public class utility {
         return cardsArray;
     }
 
+    /**
+     *
+     * @param mana
+     * @param description
+     * @param colors
+     * @param name
+     * @param health
+     * @param isFrozen
+     * @return function to create a hero with the desired parameters
+     */
     public static Hero createHero(int mana, String description, ArrayList<String> colors, String name, int health,  Map<Coordinates, Player> isFrozen) {
 
         Hero card = null;

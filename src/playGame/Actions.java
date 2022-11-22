@@ -150,7 +150,7 @@ public class Actions {
 
             } else if (action.getCommand().compareTo("endPlayerTurn") == 0) {
 
-                // Remove the frozen cards from the current user
+                // The frozen cards are unfrozen
                 Iterator<Map.Entry<Coordinates, Player> >
                         iterator = isFrozen.entrySet().iterator();
 
@@ -215,7 +215,6 @@ public class Actions {
                             rearRow.add((Minion) card);
                             currentPlayer.getHand().remove(index);
                             currentPlayer.setMana(currentPlayer.getMana() - card.getMana());
-//                            ((Minion)card).setPositionOnRow(action.getY());
 
                             if(utility.checkIsTank(card)) {
                                 currentPlayer.setTanks(currentPlayer.getTanks() + 1);
