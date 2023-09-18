@@ -55,20 +55,3 @@ utilsOutput utility class is used to create the desired output format each class
 
 At the end of each turn, the frozen cards are unfrozen and the hero used ability field is set to false.
 Also, if a round ends, each user picks a card.
-
-# Disclosures:
-
-I am sorry for the bad code, I had no time, I ran into multiple problems which took a lot of time,
-I have multiple projects and homeworks which I'm working on simultaneously and I did not get any kind of help.
-I didn't have time for solving coding style errors. </br>
-I ran into a lot of problems with git and even now I don't know if I made the commits right, because
-I forked the main project and I pushed my code to the master. But apparently that was not what was required, so
-I created a new project and I pushed my code there.
-
-### BUT:
-
-I learned a lot from this project, from designing an OOP program to running into problems because of
-bad architecture design, adding wrappers to solve the problems and more. </br>
-I would love you I could receive an in-depth feedback on my homework and tips for better code architecture.
-Also, I would love if I could receive resources for learning more about OOP and design patterns(like books you
-liked, online courses, etc). </br>
